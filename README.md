@@ -23,7 +23,7 @@ The goal is to explore how RL agents can be trained to navigate safely and effic
 - **Config file**: `config.py`
 - **Observation type**: `OccupancyGrid`
 - **Action type**: `DiscreteMetaAction`
-- **Vehicles**: 15 (10 for observations)
+- **Vehicles**: 15
 - **Duration**: 60s
 - **Reward shaping**:
 
@@ -37,9 +37,6 @@ The goal is to explore how RL agents can be trained to navigate safely and effic
 - **Config file**: `highway_continuous_config.py`
 - **Observation type**: `Kinematics`
 - **Action type**: `ContinuousAction`
-- **Vehicles**: 15
-- **Controlled vehicles**: 1
-- **Duration**: 60s
 - **Objective**: Analyze how agent behavior and learning differ when using continuous actions.
 
 ### 3. **Intersection Navigation**
@@ -47,9 +44,8 @@ The goal is to explore how RL agents can be trained to navigate safely and effic
 - **Config file**: `intersection_config.py`
 - **Observation type**: `Kinematics`
 - **Action type**: `DiscreteMetaAction`
-- **Vehicles**: 6
-- **Controlled vehicles**: 1
-- **Duration**: 40s
+- **Vehicles**: 10
+- **Duration**: 60s
 - **Objective**: Leverage off-the-shelf RL agents for training in a more complex urban setting.
 
 ---

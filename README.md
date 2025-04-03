@@ -1,13 +1,11 @@
-# RL_Project
+# RL_Project _ Autonomous Driving
 
 
 ## Project Overview
 
-This project applies **Reinforcement Learning (RL)** to train autonomous agents for simulated driving environments using the `highway-env` package. It explores both discrete and continuous action spaces in different traffic scenarios: highway driving and intersection navigation.
+This project aims to implement, train, and evaluate reinforcement learning agents in simulated road environments using the [`highway-env`](http://highway-env.farama.org/) framework.
 
-We use customized configurations for each scenario and employ different observation types (e.g., `OccupancyGrid`, `Kinematics`) to tailor the training environment to the needs of each task.
-
----
+The goal is to explore how RL agents can be trained to navigate safely and efficiently through various road scenarios such as highways and intersections, using both **discrete** and **continuous** action spaces. We also integrate a third scenario trained with **Stable-Baselines3**.
 
 ## Team Members
 
@@ -20,7 +18,7 @@ We use customized configurations for each scenario and employ different observat
 
 ## Environments and Scenarios
 
-### 1. **Highway with Discrete Actions**
+### 1. Task 1: Pre-specified Environment : **Highway with Discrete Actions**
 
 - **Config file**: `config.py`
 - **Observation type**: `OccupancyGrid`
@@ -28,9 +26,11 @@ We use customized configurations for each scenario and employ different observat
 - **Vehicles**: 15 (10 for observations)
 - **Duration**: 60s
 - **Reward shaping**:
+
   - Collision: -1
   - High speed: +0.1
   - Right lane: +0.5
+- **Objective**: Train a car to drive in highway conditions with discrete actions and document learning behavior.
 
 ### 2. **Highway with Continuous Actions**
 
@@ -40,6 +40,7 @@ We use customized configurations for each scenario and employ different observat
 - **Vehicles**: 15
 - **Controlled vehicles**: 1
 - **Duration**: 60s
+- **Objective**: Analyze how agent behavior and learning differ when using continuous actions.
 
 ### 3. **Intersection Navigation**
 
@@ -49,20 +50,21 @@ We use customized configurations for each scenario and employ different observat
 - **Vehicles**: 6
 - **Controlled vehicles**: 1
 - **Duration**: 40s
+- **Objective**: Leverage off-the-shelf RL agents for training in a more complex urban setting.
 
 ---
 
 ## Files Description
 
-| File                              | Description                                       |
-| --------------------------------- | ------------------------------------------------- |
-| `config.py`                     | Configuration for highway with discrete actions   |
-| `highway_continuous_config.py`  | Configuration for highway with continuous control |
-| `intersection_config.py`        | Configuration for intersection navigation         |
-| `config.pkl`                    | Serialized config for discrete highway scenario   |
-| `highway_continuous_config.pkl` | Serialized config for continuous highway control  |
-| `intersection_config.pkl`       | Serialized config for intersection scenario       |
-| `RL_project.ipynb`              | Notebook implementing training and evaluation     |
-| `README.md`                     | Project documentation                             |
+| File                              | Description                                         |
+| --------------------------------- | --------------------------------------------------- |
+| `config.py`                     | Task 1 environment: highway with discrete actions   |
+| `highway_continuous_config.py`  | Task 2 environment: highway with continuous actions |
+| `intersection_config.py`        | Task 3 environment: intersection with SB3 agent     |
+| `config.pkl`                    | Serialized config for discrete highway scenario     |
+| `highway_continuous_config.pkl` | Serialized config for continuous highway control    |
+| `intersection_config.pkl`       | Serialized config for intersection scenario         |
+| `RL_project.ipynb`              | Main training notebook implementing all tasks       |
+| `README.md`                     | Project documentation                               |
 
 ---

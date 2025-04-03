@@ -1,6 +1,7 @@
 import pickle
 
-config_dict = {
+# Configuration for the Racetrack environment using continuous actions
+racetrack_config = {
     "observation": {
         "type": "Kinematics",
         "vehicles_count": 5,
@@ -9,29 +10,27 @@ config_dict = {
         "absolute": False,
     },
     "action": {
-        "type": "ContinuousAction",
+        "type": "ContinuousAction",  # Enables continuous control (steering + acceleration)
     },
-    "lanes_count": 1,
-    "vehicles_count": 8,
+    "lanes_count": 4,
+    "vehicles_count": 15,
     "controlled_vehicles": 1,
-    "initial_spacing": 2.0,
-    "duration": 40,
-    "other_vehicles_type": "highway_env.vehicle.behavior.IDMVehicle",
+    "initial_spacing": 2,
+    "duration": 50,
     "screen_width": 600,
     "screen_height": 600,
-    "centering_position": [0.5, 0.5],
     "scaling": 5.5,
     "render_agent": True,
     "show_trajectories": True,
     "offscreen_rendering": False,
     "simulation_frequency": 15,
     "policy_frequency": 5,
-    "collision_reward": -5,
-    "reward_speed_range": [0, 15],
-    "high_speed_reward": 0.5,
-    "lane_change_reward": -0.1,
+    "collision_reward": -1,
+    "reward_speed_range": [20, 30],
+    "high_speed_reward": 1.0,
+    "lane_change_reward": -0.05,
     "right_lane_reward": 0.0
 }
 
-with open("roundabout_config.pkl", "wb") as f:
-    pickle.dump(config_dict, f)
+with open("racetrack_config.pkl", "wb") as f:
+    pickle.dump(racetrack_config, f)

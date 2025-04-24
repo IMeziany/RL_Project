@@ -7,6 +7,8 @@ config_dict = {
         "features": ["x", "y", "vx", "vy", "cos_h", "sin_h"],
         "normalize": True,
         "absolute": False,
+        "order": "sorted",
+        "flatten": True,
     },
     "action": {
         "type": "DiscreteMetaAction",

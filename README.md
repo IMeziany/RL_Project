@@ -48,6 +48,95 @@ The goal is to explore how RL agents can be trained to navigate safely and effic
 - **Duration**: 60s
 - **Objective**: Leverage off-the-shelf RL agents for training in a more complex urban setting.
 
+## Task 4 – Extra Experiment
+
+This section explores various behaviors and limitations of the DQN algorithm within the `highway-env` simulation framework. The experiments are based on the open-ended questions from the project instructions and aim to highlight key reinforcement learning properties such as robustness, generalization, safety, and multi-agent behavior.
+
+### 1. Impact of Hyperparameters on Performance
+
+We evaluated four different learning rates by training separate DQN agents for each setting. Each model was evaluated over 5 episodes.
+
+| Learning Rate | Average Reward |
+|---------------|----------------|
+| 1e-4          | 27.27          |
+| 5e-4          | 27.67          |
+| 1e-3          | 26.27          |
+| 5e-3          | 27.27          |
+
+**Conclusion**: The performance was stable, suggesting robustness to learning rate changes.
+
+**Reward vs Learning Rate**  
+![Learning Rate Impact](images/Impact%20of%20learning%20rate%20on%20DQN%20performance.png)
+
+### 2. Generalization to Other Environments
+
+**(a) Modified Parameters**: The model was tested in a modified version of `highway-v0` (3 lanes, more vehicles, altered rewards).
+
+- Mean reward: 282.58  
+- Result: Stable behavior without retraining
+
+**(b) Environment Change - `merge-v0`**: The same model was tested in `merge-v0`. It did not crash but failed to complete episodes or engage meaningfully.
+
+**Conclusion**: The agent generalizes well when parameters are modified, but fails to adapt to structurally new environments.
+
+**Reward in Modified Config**  
+![Generalization A](images/Generalization%20Test.png)
+
+**No progress in merge-v0**  
+![Generalization B](images/gen%20merge.png)
+
+### 3. Safe Reinforcement Learning
+
+A new DQN agent was trained using a reward structure that penalizes collisions and lane changes while encouraging right-lane driving.
+
+| Model       | Avg Reward | Collisions |
+|-------------|-------------|------------|
+| Normal DQN | 122.85      | 5/5        |
+| Safe DQN   | 149.93      | 5/5        |
+
+**Conclusion**: The safer agent obtained better rewards, but did not reduce collision frequency.
+
+**Safe vs Normal Rewards**  
+![Safe vs Normal](images/safe_vs_normal.png)
+
+### 4. Implicit Prediction of MDP Outcomes
+
+We visually inspected episodes to determine whether the agent anticipated dangers before reacting.
+
+| Episode | Situation                  | Behavior   | Notes               |
+|---------|-----------------------------|------------|---------------------|
+| 1       | Slower car ahead            | Reactive   | Braked too late     |
+| 2       | Merge zone                  | Anticipate | Changed lane early  |
+| 3       | Congestion in right lane    | Reactive   | Didn't avoid crowd  |
+
+**Conclusion**: Some behaviors suggest anticipation, though the agent is mostly reactive.
+
+### 5. Multi-Agent Control (Simplified)
+
+We increased traffic to simulate a multi-agent scenario and let a single-agent DQN model operate in a crowded environment.
+
+| Episode | Steps Survived |
+|---------|----------------|
+| 1       | 27             |
+| 2       | 33             |
+| 3       | 32             |
+
+**Conclusion**: The agent handled brief survival but failed to adapt or coordinate with other traffic agents.
+
+**Single-Agent Performance in Dense Traffic**  
+![Multi-Agent Simulation](images/multiagent_dense.png)
+
+---
+
+### Summary of Observations
+
+- Robustness to learning rate variation was observed.
+- Generalization works well across parameter changes, but not across structure.
+- Safety-based reward shaping improved reward but not collisions.
+- Implicit prediction of environment dynamics may be emerging.
+- A DQN model trained on single-agent tasks fails to generalize to multi-agent situations.
+
+
 ---
 
 ## Files Description

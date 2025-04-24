@@ -1,4 +1,6 @@
-config = {
+import pickle
+
+config_dict = {
     "observation": {
         "type": "Kinematics",
         "vehicles_count": 5,
@@ -30,3 +32,6 @@ config = {
     "lane_change_reward": -0.1,
     "right_lane_reward": 0.0
 }
+
+with open("intersection_config.pkl", "wb") as f:
+    pickle.dump(config_dict, f)
